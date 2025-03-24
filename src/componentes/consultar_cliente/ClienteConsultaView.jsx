@@ -55,4 +55,3 @@ ClienteConsultaView.propTypes = {
 };
 
 export default ClienteConsultaView;
-q;
