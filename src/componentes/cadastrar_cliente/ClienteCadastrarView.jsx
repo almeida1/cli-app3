@@ -38,13 +38,15 @@ const ClienteCadastrarView = ({ onCancelar }) => {
 
   return (
     <div className="cliente-cadastrar-view">
-      <div className="title-cadastrar-view">Gerenciamento de Clientes</div>
+      <div className="title-cadastrar-view">Cadastrar Clientes</div>
 
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="cpf"> CPF: </label>
           <input
             id="cpf"
+            name="cpf"
+            data-testid="cpf"
             type="text"
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
@@ -55,6 +57,8 @@ const ClienteCadastrarView = ({ onCancelar }) => {
           <label htmlFor="nome">Nome:</label>
           <input
             id="nome"
+            name="nome"
+            data-testid="nome"
             type="text"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
@@ -65,6 +69,8 @@ const ClienteCadastrarView = ({ onCancelar }) => {
           <label htmlFor="cep">CEP:</label>
           <input
             id="cep"
+            nome="cep"
+            data-testid="cep"
             type="text"
             value={cep}
             onChange={(e) => setCep(e.target.value)}
@@ -75,6 +81,8 @@ const ClienteCadastrarView = ({ onCancelar }) => {
           <label htmlFor="email">e-mail:</label>
           <input
             id="email"
+            name="email"
+            data-testid="email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -82,10 +90,15 @@ const ClienteCadastrarView = ({ onCancelar }) => {
           />
         </div>
         <div className="button-container1">
-          <button type="submit" className="button">
+          <button id="confirmar" type="submit" className="button">
             Confirmar
           </button>
-          <button type="button" className="button" onClick={onCancelar}>
+          <button
+            id="cancelar"
+            type="button"
+            className="button"
+            onClick={onCancelar}
+          >
             Cancelar
           </button>
         </div>
