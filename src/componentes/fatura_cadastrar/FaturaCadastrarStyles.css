@@ -1,30 +1,58 @@
-/* 
-  componente ClienteConsultaStyles.css.
-*/
-.cliente-view {
-    padding: 10px;
-  }
-  
-  .cliente-view h3 {
-    margin-bottom: 20px;
-  }
-  
-  .cliente-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .cliente-table th,
-  .cliente-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-  }
-  
-  .cliente-table th {
-    text-align: left;
-  }
-  
-  .cliente-table td {
-    text-align: left; /* Alinhamento à direita */
-  }
-  
+.title-cadastrar-view {
+  font-size: 1.5em;
+  margin-bottom: 8px;
+  color: #333;
+  text-align: center;
+}
+
+.fatura-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.fatura-form > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.fatura-form label {
+  font-weight: bold;
+  margin-bottom: 3px;
+  color: #555;
+}
+
+.fatura-form input[type="text"],
+.fatura-form input[type="date"],
+.fatura-form input[type="number"] {
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 1em;
+}
+
+.fatura-form button[type="submit"] {
+  padding: 8px 5px; /* Diminuindo o padding vertical do botão */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.fatura-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px; /* Diminuindo a margem inferior do grupo */
+}
