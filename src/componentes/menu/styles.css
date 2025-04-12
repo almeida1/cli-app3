@@ -1,0 +1,22 @@
+/* styles.css */
+.title {
+    text-align: center;
+    margin: 20px auto;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    width: fit-content;
+  }
+  .button-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    margin: 10px 10px; /* Margens de 10 pixels nas laterais */
+    padding: 10px;
+    background-color: #e0f7fa; /* Cor azul clara */
+  }
+  
+  .button {
+    margin: 0 5px; /* Adiciona espaçamento entre os botões */
+  }

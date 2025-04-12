@@ -5,25 +5,28 @@ import App from "./App.js"; // Importa o componente a ser testado
 test("ct01 - verifica se titulo esta na pagina", () => {
   // Renderiza o componente App
   render(<App />);
-  const textElement = screen.getByText(/gerenciamento de clientes/i);
+  const textElement = screen.getByText(/Sistema Integrado de Gestão/i);
   expect(textElement).toBeInTheDocument();
 });
 
-test("ct02 - ao clicar em cadastrar deve navegar para ClienteCadastrarView", () => {
+test("ct02 - ao clicar em cadastrar deve navegar para tela de cadastro", () => {
   render(<App />);
 
-  // Verifica se o botão "Cadastrar" está presente
-  const cadastrarButton = screen.getByText("Cadastrar");
-  expect(cadastrarButton).toBeInTheDocument();
+  // Verifica se o botão "Menu Cliente" está presente
+  const menuClienteButton = screen.getByText("Menu Cliente");
+  expect(menuClienteButton).toBeInTheDocument();
 
-  // Simula um clique no botão "Cadastrar"
-  fireEvent.click(cadastrarButton);
+  // Simula um clique no botão "Mneu Cliente"
+  fireEvent.click(menuClienteButton);
 
-  // Verifica se ClienteCadastrarView é renderizado
-  expect(screen.getByText("Cadastrar Clientes")).toBeInTheDocument();
+  // Verifica se navegou para tela de cadastro
+  expect(screen.getByText("Gerenciamento de Clientes")).toBeInTheDocument();
 });
-test("ct03 - preenche o formulário de cadastro de cliente e verifica se os valores foram incluidos", async () => {
+test("ct03 - preenche o formulário de cadastro e verifica se os valores foram incluidos", async () => {
   render(<App />);
+  const menuClienteButton = screen.getByText("Menu Cliente");
+  // Simula um clique no botão "Mneu Cliente"
+  fireEvent.click(menuClienteButton);
   // Verifica se o botão "Cadastrar" está presente
   const cadastrarButton = screen.getByText("Cadastrar");
   expect(cadastrarButton).toBeInTheDocument();
