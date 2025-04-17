@@ -69,7 +69,7 @@ const ClienteCadastrarView = ({ onCancelar }) => {
           <label htmlFor="cep">CEP:</label>
           <input
             id="cep"
-            nome="cep"
+            name="cep"
             data-testid="cep"
             type="text"
             value={cep}
