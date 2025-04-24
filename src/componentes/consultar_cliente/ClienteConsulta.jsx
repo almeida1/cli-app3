@@ -13,7 +13,7 @@ function ClienteConsulta({ atualizarConsulta }) {
       setError(null);
       try {
         const response = await fetch(
-          "http://localhost:8081/api/v1/clientes/all"
+          "https://cli-app3-e3c05aa621e6.herokuapp.com/api/v1/clientes/all"
         );
         if (!response.ok) {
           throw new Error("Erro na requisição");
