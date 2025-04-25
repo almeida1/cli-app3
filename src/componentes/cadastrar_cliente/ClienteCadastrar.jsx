@@ -1,6 +1,6 @@
 async function ClienteCadastrar(cliente) {
   try {
-    const response = await fetch("https://cli-app3-e3c05aa621e6.herokuapp.com/api/v1/clientes", {
+    const response = await fetch("https://ms1a-d545c9676792.herokuapp.com/api/v1/clientes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
