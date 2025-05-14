@@ -99,7 +99,7 @@ const FaturaCadastrarView = () => {
 
   return (
     <div style={{ maxWidth: '500px', margin: 'auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h2>Cadastrar Fatura</h2>
+      <h4>Cadastrar Fatura</h4>
 
       {erro && <p style={{ color: 'red' }}>{erro}</p>}
       {sucesso && <p style={{ color: 'green' }}>{sucesso}</p>}
