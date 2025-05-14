@@ -1,12 +1,12 @@
 import React from "react";
 import FaturaCadastrarView from "../fatura_cadastrar/FaturaCadastrarView.jsx";
-import FaturaConsultarView from "../fatura_consultar/FaturaConsultarView.jsx";
+import FaturaConsulta from "../fatura_consultar/FaturaConsulta.jsx";
 import "./styles.css"; // Importando o CSS para estilização
 import { useState, useEffect } from "react";
 function MenuFatura({ onVoltar }) {
   const [exibirCadastro, setExibirCadastro] = useState(false);
   const [exibirConsulta, setExibirConsulta] = useState(false);
-  const [faturas, setClientes] = useState([]);
+  const [faturas, setFaturas] = useState([]);
 
   const handleConsultar = () => {
     setExibirConsulta(true);
@@ -29,12 +29,12 @@ function MenuFatura({ onVoltar }) {
   };
   const fetchClientes = async () => {
     try {
-      const response = await fetch("http://localhost:8081/api/v1/clientes");
+      const response = await fetch("http://localhost:8080/api/v1/faturas");
       if (!response.ok) {
         throw new Error("Falha ao buscar clientes");
       }
       const data = await response.json();
-      setClientes(data);
+      setFaturas(data);
     } catch (error) {
       console.error("Erro ao buscar clientes:", error);
     }
@@ -63,7 +63,7 @@ function MenuFatura({ onVoltar }) {
       {exibirCadastro && (
         <FaturaCadastrarView onCancelar={handleCancelarCadastro} />
       )}
-      {exibirConsulta && <FaturaConsultarView clientes={faturas} />}
+      {exibirConsulta && <FaturaConsulta faturas={faturas} />}
     </div>
   );
 }

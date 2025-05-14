@@ -1,30 +1,35 @@
 /* 
   componente ClienteConsultaStyles.css.
 */
-.cliente-view {
+.fatura-view {
     padding: 10px;
   }
   
-  .cliente-view h3 {
-    margin-bottom: 20px;
+  .fatura-view h3 {
+    margin-bottom: 10px;
   }
   
-  .cliente-table {
+  .fatura-table {
     width: 100%;
     border-collapse: collapse;
   }
   
-  .cliente-table th,
-  .cliente-table td {
+  .fatura-table th,
+  .fatura-table td {
     border: 1px solid #ccc;
     padding: 8px;
   }
   
-  .cliente-table th {
-    text-align: left;
-  }
-  
-  .cliente-table td {
-    text-align: left; /* Alinhamento à direita */
-  }
-  
+  .fatura-container {
+  margin: 24px auto;
+  padding: 16px;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.fatura-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
