@@ -1,4 +1,4 @@
-async function FaturaCadastrar(cliente) {
+async function FaturaCadastrar(fatura) {
   try {
     const response = await fetch("http://localhost:8080/api/v1/faturas", {
       method: "POST",

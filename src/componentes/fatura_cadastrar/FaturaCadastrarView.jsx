@@ -1,89 +1,66 @@
 import React, { useState } from 'react';
+import FaturaCadastrar from './FaturaCadastrar';
 
 const FaturaCadastrarView = () => {
-  // Estados para cada campo do formulário
   const [cnpj, setCnpj] = useState('');
   const [dataVencimento, setDataVencimento] = useState('');
   const [servico, setServico] = useState('');
   const [valor, setValor] = useState('');
-  const [erro, setErro] = useState(''); // Estado para mensagens de erro
-  const [sucesso, setSucesso] = useState(''); // Estado para mensagens de sucesso
+  const [erro, setErro] = useState('');
+  const [sucesso, setSucesso] = useState('');
 
-  // Função para lidar com a submissão do formulário
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Previne o comportamento padrão do formulário
-    setErro(''); // Limpa erros anteriores
-    setSucesso(''); // Limpa mensagens de sucesso anteriores
+    event.preventDefault();
+    setErro('');
+    setSucesso('');
 
-    // Validação básica (pode ser expandida)
     if (!cnpj || !dataVencimento || !servico || !valor) {
       setErro('Todos os campos são obrigatórios.');
       return;
     }
 
-    // Validação do formato do CNPJ (pode ser utilizado biblioteca 'cnpj')
-    const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/; // Formato XX.XXX.XXX/XXXX-XX
+    const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
     if (!cnpjRegex.test(cnpj)) {
       setErro('Formato de CNPJ inválido. Use XX.XXX.XXX/XXXX-XX.');
       return;
     }
 
-    // Validação do valor (deve ser um número)
     if (isNaN(parseFloat(valor))) {
       setErro('O valor deve ser um número.');
       return;
     }
 
-    // Objeto com os dados da fatura
     const formatarData = (dataISO) => {
-       const [ano, mes, dia] = dataISO.split('-');
-       return `${dia}/${mes}/${ano}`;
+      const [ano, mes, dia] = dataISO.split('-');
+      return `${dia}/${mes}/${ano}`;
     };
+
     const novaFatura = {
-      cnpj: cnpj.replace(/\D/g, ''), // Remove a formatação
+      cnpj: cnpj.replace(/\D/g, ''),
       dataVencimento: formatarData(dataVencimento),
-      servico,
-      valor: parseFloat(valor), // Converte o valor para número
+      servicoContratado: servico,
+      valor: parseFloat(valor),
     };
 
-    // chamada para API com objetivo de salvar os dados
     try {
-      
-      const response = await fetch('http://localhost:8080/api/v1/faturas', {
-         method: 'POST',
-         headers: {
-           'Content-Type': 'application/json',
-         },
-         body: JSON.stringify(novaFatura),
-       });
-
-       if (!response.ok) {
-        console.log('Fatura a ser cadastrada:', novaFatura);
-         const errorData = await response.json();
-         throw new Error(errorData.message || 'Erro ao cadastrar fatura.');
-       }
-
-      console.log('Fatura a ser cadastrada:', novaFatura);
-      setSucesso('Fatura cadastrada com sucesso!');
-
-      // Limpar o formulário após o sucesso
-      setCnpj('');
-      setDataVencimento('');
-      setServico('');
-      setValor('');
-
+      const resultado = await FaturaCadastrar(novaFatura);
+      if (resultado.success) {
+        setSucesso('Fatura cadastrada com sucesso!');
+        setCnpj('');
+        setDataVencimento('');
+        setServico('');
+        setValor('');
+      } else {
+        setErro(resultado.error || 'Erro ao cadastrar fatura.');
+      }
     } catch (error) {
       setErro(error.message || 'Ocorreu um erro ao tentar cadastrar a fatura.');
-      console.error('Erro ao cadastrar fatura:', error);
     }
   };
 
-  // Função para formatar CNPJ enquanto o usuário digita
   const handleCnpjChange = (e) => {
-    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-    if (value.length > 14) {
-      value = value.substring(0, 14);
-    }
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 14) value = value.substring(0, 14);
     if (value.length > 12) {
       value = `${value.substring(0, 2)}.${value.substring(2, 5)}.${value.substring(5, 8)}/${value.substring(8, 12)}-${value.substring(12)}`;
     } else if (value.length > 8) {
@@ -95,7 +72,6 @@ const FaturaCadastrarView = () => {
     }
     setCnpj(value);
   };
-
 
   return (
     <div style={{ maxWidth: '500px', margin: 'auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
@@ -143,10 +119,10 @@ const FaturaCadastrarView = () => {
         <div style={{ marginBottom: '15px' }}>
           <label htmlFor="valor">Valor (R$):</label>
           <input
-            type="text" // Usar text para permitir formatação, mas validar como número
+            type="text"
             id="valor"
             value={valor}
-            onChange={(e) => setValor(e.target.value.replace(',', '.'))} // Substitui vírgula por ponto para facilitar a conversão
+            onChange={(e) => setValor(e.target.value.replace(',', '.'))}
             placeholder="0.00"
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
           />
@@ -163,7 +139,7 @@ const FaturaCadastrarView = () => {
             cursor: 'pointer',
           }}
         >
-          Cadastrar Fatura
+          Confirmar
         </button>
       </form>
     </div>
